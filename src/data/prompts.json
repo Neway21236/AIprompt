@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "title": "Clean Code Architect",
+    "category": "Software Development",
+    "preview": "Act as an expert software architect. Refactor the following code for better readability, performance, and adherence to SOLID principles...",
+    "prompt": "Act as an expert software architect with 20 years of experience. I will provide you with a code snippet. Your goal is to refactor it to ensure it is clean, efficient, and follows industry best practices (SOLID, DRY, KISS). Please provide the refactored code along with a detailed explanation of the changes you made and why."
+  },
+  {
+    "id": 2,
+    "title": "Cinematic Color Grade",
+    "category": "Video Editing",
+    "preview": "Provide a step-by-step guide to achieving a cinematic teal and orange look in DaVinci Resolve for outdoor daylight footage...",
+    "prompt": "I want you to act as a professional colorist. Guide me through the process of creating a cinematic 'Teal and Orange' look in DaVinci Resolve. The footage was shot in LOG profile during a sunny day. Explain the node structure, primary corrections, and the specific adjustments for the shadows and highlights to achieve that Hollywood look."
+  },
+  {
+    "id": 3,
+    "title": "Minimalist Logo Concept",
+    "category": "Graphic Design",
+    "preview": "Generate 5 unique concepts for a minimalist logo for a high-end tech startup focusing on AI and sustainability...",
+    "prompt": "Act as a Senior Brand Designer. I am starting a tech company called 'Aura' which focuses on AI-driven sustainability solutions. Provide 5 distinct minimalist logo concepts. For each concept, describe the visual elements, the symbolism behind them, and the recommended color palette (using hex codes)."
+  },
+  {
+    "id": 4,
+    "title": "Hyper-Realistic Portrait",
+    "category": "Image Generation",
+    "preview": "A highly detailed, hyper-realistic portrait of an elderly traveler in a bustling Moroccan market, 8k resolution, cinematic lighting...",
+    "prompt": "Generate a prompt for Midjourney/Stable Diffusion: A hyper-realistic, close-up portrait of an elderly man with weathered skin and deep-set eyes, wearing a traditional blue turban. He is standing in the middle of a bustling Moroccan spice market. Cinematic lighting, dust particles visible in the sunbeams, 8k resolution, shot on 85mm lens, f/1.8, highly detailed textures."
+  },
+  {
+    "id": 5,
+    "title": "Viral Twitter Thread",
+    "category": "Content Creation",
+    "preview": "Write a compelling 10-tweet thread about the future of AI in the workplace that is designed to go viral...",
+    "prompt": "Act as a viral content creator. Write a 10-tweet thread about how AI will transform the workplace by 2030. Each tweet should be engaging, include a hook, and use bullet points where appropriate. The tone should be optimistic but grounded in reality. Include relevant hashtags and a call to action at the end."
+  },
+  {
+    "id": 6,
+    "title": "React Performance Audit",
+    "category": "Software Development",
+    "preview": "Analyze this React component for performance bottlenecks and suggest optimizations using useMemo and useCallback...",
+    "prompt": "I will provide you with a React component. Act as a Senior Frontend Engineer and perform a performance audit. Identify unnecessary re-renders, suggest where useMemo and useCallback should be applied, and provide the optimized version of the component."
+  },
+  {
+    "id": 7,
+    "title": "Explainer Video Script",
+    "category": "Video Editing",
+    "preview": "Create a script for a 60-second explainer video for a new SaaS product that simplifies project management...",
+    "prompt": "Write a punchy, 60-second script for an explainer video for 'FlowTask', a SaaS tool that uses AI to automate project management. The script should follow the Problem-Agitation-Solution (PAS) framework. Include visual cues and voiceover instructions."
+  },
+  {
+    "id": 8,
+    "title": "Brand Style Guide",
+    "category": "Graphic Design",
+    "preview": "Create a comprehensive brand style guide for a modern e-commerce brand specializing in handmade leather goods...",
+    "prompt": "Develop a comprehensive brand style guide for 'Heritage Leather'. Include a mission statement, voice and tone guidelines, typography (primary and secondary fonts), and a color palette with hex codes that evokes a sense of craftsmanship and luxury."
+  },
+  {
+    "id": 9,
+    "title": "Cyberpunk Cityscape",
+    "category": "Image Generation",
+    "preview": "A sprawling cyberpunk city at night with neon signs, flying cars, and rain-slicked streets, ultra-detailed, 4k...",
+    "prompt": "Midjourney Prompt: A sprawling, multi-level cyberpunk metropolis at night. Neon signs in Japanese kanji, flying vehicles weaving between skyscrapers, heavy rain creating reflections on the streets. Moody blue and pink lighting. Shot from a high-angle drone perspective. Ultra-detailed, photorealistic, 4k, Unreal Engine 5 render style."
+  },
+  {
+    "id": 10,
+    "title": "SEO Blog Post",
+    "category": "Content Creation",
+    "preview": "Write a 1500-word SEO-optimized blog post about the benefits of remote work for small businesses...",
+    "prompt": "Act as an SEO expert and content writer. Write a 1500-word blog post titled 'Why Remote Work is the Secret Weapon for Small Businesses in 2024'. Use H1, H2, and H3 tags. Include a meta description, 5 focus keywords, and ensure the content is highly engaging and informative."
+  },
+  {
+    "id": 11,
+    "title": "News Paper",
+    "category": "Image Generation",
+    "preview": "Transform the person in the uploaded photo into a whimsical black-and-white vintage newspaper front page....",
+    "prompt": "Transform the person in the uploaded photo into a whimsical black-and-white vintage newspaper front page. Place them as the main portrait in the center, styled like an old engraved photograph. Surround them with bold, exaggerated headline text, narrow newspaper columns, and playful subheadings. Use high-contrast black ink on pure white background, subtle paper texture, and classic serif fonts. Add quirky, magical or humorous headlines to create a charming, slightly surreal tone. Keep the layout dense, editorial, and reminiscent of an old fantasy newspaper. Ensure the subject's face remains recognizable but stylized to match the printed newspaper aesthetic."
+  }
+]
