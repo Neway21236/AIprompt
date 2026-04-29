@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Instagram, Facebook, Youtube, Twitter, MessageCircle, Send } from 'lucide-react';
+import { Mail, Instagram, Facebook, Youtube, X, MessageCircle, Send } from 'lucide-react';
 
 export const ContactSection = () => {
   return (
@@ -43,7 +43,7 @@ export const ContactSection = () => {
                     <MessageCircle className="w-5 h-5 text-slate-400 group-hover:text-green-500" />
                   </a>
                   <a href="#" className="w-10 h-10 rounded-xl bg-slate-800/50 flex items-center justify-center border border-slate-700/50 hover:border-white/50 hover:bg-white/10 transition-all group" title="X (Twitter)">
-                    <Twitter className="w-5 h-5 text-slate-400 group-hover:text-white" />
+                    <X className="w-5 h-5 text-slate-400 group-hover:text-white" />
                   </a>
                 </div>
               </div>
