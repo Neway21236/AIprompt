@@ -137,15 +137,19 @@ export const AddPromptModal = ({ isOpen, onClose, onAdd }) => {
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
                   <ImageIcon className="w-3.5 h-3.5" />
-                  Sample Image URL
+                  Sample Image URL <span className="text-slate-600">(required for public access)</span>
                 </label>
                 <input
                   type="url"
-                  placeholder="https://images.unsplash.com/..."
+                  placeholder="https://images.unsplash.com/photo-... or https://pexels.com/..."
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
                   value={formData.sampleImage}
                   onChange={(e) => setFormData({ ...formData, sampleImage: e.target.value })}
+                  required
                 />
+                <p className="text-xs text-slate-500">
+                  💡 Use public URLs from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Unsplash</a>, <a href="https://pexels.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Pexels</a>, or <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Pixabay</a>
+                </p>
               </div>
             )}
 
@@ -153,15 +157,19 @@ export const AddPromptModal = ({ isOpen, onClose, onAdd }) => {
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
                   <VideoIcon className="w-3.5 h-3.5" />
-                  Sample Video URL
+                  Sample Video URL <span className="text-slate-600">(required for public access)</span>
                 </label>
                 <input
                   type="url"
-                  placeholder="https://sample-videos.com/video.mp4"
+                  placeholder="https://cdn.pexels.com/video/... or https://pixabay.com/videos/..."
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
                   value={formData.sampleVideo}
                   onChange={(e) => setFormData({ ...formData, sampleVideo: e.target.value })}
+                  required
                 />
+                <p className="text-xs text-slate-500">
+                  💡 Use public URLs from <a href="https://pexels.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Pexels</a>, <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Pixabay</a>, or <a href="https://coverr.co" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Coverr</a>
+                </p>
               </div>
             )}
 

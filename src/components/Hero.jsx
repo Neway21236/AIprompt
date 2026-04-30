@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ArrowRight, Zap } from 'lucide-react';
 
 export const Hero = () => {
   return (
@@ -41,6 +41,26 @@ export const Hero = () => {
           Explore a premium library of high-performance AI prompts tailored for developers, 
           designers, and content creators. Copy, paste, and create.
         </motion.p>
+
+        {/* Brand Builder CTA - Lead Magnet */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="inline-flex flex-col sm:flex-row items-center gap-4 p-1 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/10 to-primary/20 border border-primary/30"
+        >
+          <div className="flex items-center gap-2 px-4 py-2 text-slate-300">
+            <Zap className="w-4 h-4 text-accent" />
+            <span className="text-sm font-medium">Want custom prompts for your business?</span>
+          </div>
+          <a
+            href="#contact"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary/90 transition-all hover:scale-105 active:scale-95"
+          >
+            <span>Get Custom Prompts</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

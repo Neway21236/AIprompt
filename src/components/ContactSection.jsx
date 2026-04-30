@@ -3,7 +3,7 @@ import { Mail, Instagram, Facebook, Youtube, X, MessageCircle, Send } from 'luci
 
 export const ContactSection = () => {
   return (
-    <section className="container mx-auto px-4 py-24 border-t border-slate-900/50">
+    <section id="contact" className="container mx-auto px-4 py-24 border-t border-slate-900/50">
       <div className="glass max-w-4xl mx-auto rounded-3xl p-8 md:p-12 relative overflow-hidden">
         {/* Glow decoration */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
@@ -51,8 +51,12 @@ export const ContactSection = () => {
           </div>
 
           <div className="space-y-4">
+            <div className="p-4 rounded-xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/30 mb-4">
+              <h3 className="text-white font-semibold mb-1">Need Custom AI Prompts?</h3>
+              <p className="text-sm text-slate-400">Get tailored prompts for your specific business needs. Perfect for marketing, content creation, and workflow automation.</p>
+            </div>
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 ml-1">Email Address</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 ml-1">Your Email</label>
               <input
                 type="email"
                 placeholder="you@example.com"
@@ -60,17 +64,18 @@ export const ContactSection = () => {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 ml-1">Message</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 ml-1">What do you need?</label>
               <textarea
-                placeholder="Tell us about your prompt idea..."
+                placeholder="Describe your prompt needs (e.g., 'I need prompts for Instagram captions for my fitness brand')..."
                 rows="4"
                 className="w-full bg-slate-950/50 border border-slate-800 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all resize-none"
               ></textarea>
             </div>
             <button className="w-full accent-gradient py-4 rounded-xl text-white font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-primary/20">
               <Send className="w-4 h-4" />
-              <span>Send Message</span>
+              <span>Request Custom Prompts</span>
             </button>
+            <p className="text-xs text-slate-500 text-center">Usually responds within 24 hours</p>
           </div>
         </div>
       </div>

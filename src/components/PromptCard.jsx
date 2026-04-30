@@ -1,11 +1,23 @@
-import { motion } from 'framer-motion';
-import { Copy, Check, ExternalLink, Play, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Copy, Check, ExternalLink, Play, Trash2, Heart } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { PromptDetailModal } from './PromptDetailModal';
 
 export const PromptCard = ({ prompt, onCopy, onDelete, isAdmin }) => {
   const [copied, setCopied] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isFullImageOpen, setIsFullImageOpen] = useState(false);
+  const [likes, setLikes] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isLikeAnimating, setIsLikeAnimating] = useState(false);
+
+  // Load likes from localStorage
+  useEffect(() => {
+    const savedLikes = localStorage.getItem(`prompt_likes_${prompt.id}`);
+    const savedLiked = localStorage.getItem(`prompt_liked_${prompt.id}`);
+    if (savedLikes) setLikes(parseInt(savedLikes));
+    if (savedLiked) setIsLiked(savedLiked === 'true');
+  }, [prompt.id]);
 
   const handleCopy = (e) => {
     e.stopPropagation();
@@ -19,6 +31,42 @@ export const PromptCard = ({ prompt, onCopy, onDelete, isAdmin }) => {
     e.stopPropagation();
     onDelete();
   };
+
+  const handleLike = (e) => {
+    e.stopPropagation();
+    setIsLikeAnimating(true);
+    const newLiked = !isLiked;
+    const newLikes = newLiked ? likes + 1 : Math.max(0, likes - 1);
+    setIsLiked(newLiked);
+    setLikes(newLikes);
+    localStorage.setItem(`prompt_likes_${prompt.id}`, newLikes.toString());
+    localStorage.setItem(`prompt_liked_${prompt.id}`, newLiked.toString());
+    setTimeout(() => setIsLikeAnimating(false), 400);
+  };
+
+  const handleImageClick = (e) => {
+    e.stopPropagation();
+    if (prompt.category === 'Image Generation' && prompt.sampleImage) {
+      setIsFullImageOpen(true);
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  const closeFullImage = () => {
+    setIsFullImageOpen(false);
+    document.body.style.overflow = '';
+  };
+
+  // Handle ESC key to close lightbox
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isFullImageOpen) {
+        closeFullImage();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullImageOpen]);
 
   return (
     <>
@@ -61,13 +109,24 @@ export const PromptCard = ({ prompt, onCopy, onDelete, isAdmin }) => {
 
         {/* Media Preview (Optional) */}
         {prompt.category === 'Image Generation' && prompt.sampleImage && (
-          <div className="relative aspect-video rounded-xl overflow-hidden border border-slate-800">
+          <div 
+            className="relative aspect-video rounded-xl overflow-hidden border border-slate-800 cursor-zoom-in group/image"
+            onClick={handleImageClick}
+          >
             <img 
               src={prompt.sampleImage} 
               alt={prompt.title} 
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-slate-950/90 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+              <div className="flex items-center justify-center gap-2 text-white text-xs font-medium">
+                <ExternalLink className="w-4 h-4" />
+                <span>View Full Size</span>
+              </div>
+            </div>
           </div>
         )}
 
@@ -81,6 +140,24 @@ export const PromptCard = ({ prompt, onCopy, onDelete, isAdmin }) => {
         </div>
 
         <div className="mt-auto pt-4 flex items-center gap-3">
+          <motion.button
+            onClick={handleLike}
+            whileTap={{ scale: 0.85 }}
+            className={`flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-lg border transition-all duration-200 ${
+              isLiked 
+                ? 'bg-rose-500/15 border-rose-500/40 text-rose-400' 
+                : 'text-slate-400 hover:text-rose-400 bg-slate-800/30 hover:bg-slate-800/60 border-slate-700/30 hover:border-rose-500/30'
+            }`}
+          >
+            <motion.span
+              animate={isLikeAnimating ? { scale: [1, 1.4, 1] } : {}}
+              transition={{ duration: 0.3 }}
+            >
+              <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-rose-400' : ''}`} />
+            </motion.span>
+            <span className="min-w-[2ch]">{likes > 0 ? likes : ''}</span>
+          </motion.button>
+          
           <button
             onClick={handleCopy}
             className="flex-1 flex items-center justify-center gap-2 text-xs font-medium text-slate-300 hover:text-white transition-colors bg-slate-800/50 hover:bg-slate-800 px-4 py-2.5 rounded-lg border border-slate-700/50"
@@ -117,6 +194,50 @@ export const PromptCard = ({ prompt, onCopy, onDelete, isAdmin }) => {
         onClose={() => setIsDetailModalOpen(false)} 
         onCopy={onCopy}
       />
+
+      {/* Full Size Image Lightbox */}
+      <AnimatePresence>
+        {isFullImageOpen && prompt.sampleImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={closeFullImage}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-slate-950/98 backdrop-blur-md"
+          >
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              onClick={closeFullImage}
+              className="absolute top-4 right-4 z-10 p-3 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-all border border-slate-700/50"
+            >
+              <ExternalLink className="w-5 h-5 rotate-90" />
+            </motion.button>
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.92, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-5xl max-h-[90vh] w-full"
+            >
+              <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl">
+                <img 
+                  src={prompt.sampleImage} 
+                  alt={prompt.title} 
+                  className="w-full h-full object-contain max-h-[80vh]"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
+                  <h3 className="text-lg font-semibold text-white">{prompt.title}</h3>
+                  <p className="text-sm text-slate-400 mt-1">Press ESC or click outside to close</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
